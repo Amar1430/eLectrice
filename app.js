@@ -12,7 +12,7 @@ app.set('views', 'views');
 
 app.set('view engine', 'ejs');
 app.use(express.json())
-const userLogIn = {usernameLogIn: "test" } // ((((  ""  ))))
+const userLogIn = {usernameLogIn: "" } // ((((  ""  ))))
 const liveReloadServer = livereload.createServer();
 liveReloadServer.watch(path.join(__dirname, "public"));
 
