@@ -12,7 +12,7 @@ app.set('views', 'views');
 
 app.set('view engine', 'ejs');
 app.use(express.json())
-const userLogIn = {usernameLogIn: "" }
+const userLogIn = {usernameLogIn: "test" } // ((((  ""  ))))
 const liveReloadServer = livereload.createServer();
 liveReloadServer.watch(path.join(__dirname, "public"));
 
@@ -42,7 +42,9 @@ mongoose
 
 const Game = require("./models/gameSchema");
 const User = require("./models/user");
+const Rcomment = require("./models/Rcomment");
 const comment = require("./models/comment");
+
 app.get("/", (req, res) => {
   res.redirect("/Electric");
 
@@ -59,8 +61,8 @@ app.get("/social", (req, res) => {
 app.get("/Electric", (req, res) => {
   Game.find()
     .then((result) => {
-      res.render("index", { mytitle: "Electric", result: result });
-      console.log("All its Done !!!!!", userLogIn.usernameLogIn);
+      res.render("index", { mytitle: "Electric", result: result , username:userLogIn.usernameLogIn });
+   
     })
     .catch((err) => {
       console.log(err);
@@ -71,34 +73,72 @@ app.get("/Electric/:id", (req, res) => {
   Game.findById(req.params.id).then((result) => {
     
 
-comment.find().then((resultCom) => {
-  res.render("gamePage", { mytitle: result.name, objgame: result , username: userLogIn.usernameLogIn  , resultCom: resultCom  });
-}).catch((err) => {
-console.log(err)
-})
-  }).catch((err) => {
-    console.log(err);
-  });
+    comment.find({id: req.params.id}).then((resultCom) => {
+     
+        Rcomment.find({id: req.params.id}).then((resultRCom) => {
+          res.render("gamePage", { mytitle: result.name, objgame: result , username: userLogIn.usernameLogIn  , resultCom: resultCom ,resultRCom: resultRCom  });
+      
+      }).catch((err) => {
+      console.log(err)
+      })
+    }).catch((err) => {
+    console.log(err)
+    })
+      }).catch((err) => {
+        console.log(err);
+      });
 });
 
 app.post("/api/comment", (req, res) => {
   
 console.log(req.body)
-new comment({num: req.body.num ,comment: req.body.comment , username: req.body.username}).save().then((result) => {
+new comment({num: req.body.num ,comment: req.body.comment , username: req.body.username, id: req.body.id}).save().then((result) => {
 console.log("comment created");
- }).catch()
+ }).catch((err) => {
+  console.log(err);
+ })
 
 })
+
+
+
+
+
+
 app.get("/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/:id", (req, res) => {
   Game.findById(req.params.id).then((result) => {
-    res.render("GamePageAdmin", { mytitle: result.name, objgame: result });
-  });
+    
+
+    comment.find({id: req.params.id}).then((resultCom) => {
+     
+        Rcomment.find({id: req.params.id}).then((resultRCom) => {
+          res.render("gamePageAdmin", { mytitle: result.name, objgame: result , username: userLogIn.usernameLogIn  , resultCom: resultCom ,resultRCom: resultRCom  });
+      
+      }).catch((err) => {
+      console.log(err)
+      })
+    }).catch((err) => {
+    console.log(err)
+    })
+      }).catch((err) => {
+        console.log(err);
+      });
 });
 app.get("/login", (req, res) => {
-  res.render("login", { mytitle: "log in" });
+  res.render("login", { mytitle: "log in" , username:userLogIn.usernameLogIn});
 });
 app.get("/register", (req, res) => {
-  res.render("register", { mytitle: "register" });
+  res.render("register", { mytitle: "register" , username:userLogIn.usernameLogIn});
+});
+app.get("/profile", (req, res) => {
+  User.findOne({username: userLogIn.usernameLogIn}).then((result) => {
+     res.render("profile", { user: result , mytitle: userLogIn.usernameLogIn , username: userLogIn.usernameLogIn});
+    
+  }).catch((err) => {
+    console.log(err)
+    
+  })
+ 
 });
 
 app.use(bodyParser.json());
@@ -109,9 +149,9 @@ app.post("/api/register", async (req, res) => {
 
    User.findOne({username: username}).then((result) => {
 
-if (username == 'admin') {
-  res.json({message: "username in use" , mylink: "/register"})
-} else {
+    if (username == 'admin') {
+      res.json({message: "username in use" , mylink: "/register"})
+    } else {
   if (result == null) {
     new User({username , password}).save().then((result) => {
       res.json({message: "username created successfully" , mylink: "/login"})
@@ -120,9 +160,19 @@ if (username == 'admin') {
     }else{
       res.json({message: "username in use" , mylink: "/register"})
     }
-}
+  }
 })
 })
+
+app.delete("/Electric/_id", (req, res) => {
+  comment.findByIdAndDelete(req.params.id)
+    .then((params) => {
+      console.log("done" );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 
 app.post("/api/login" , async   (req,res) => {
@@ -131,18 +181,22 @@ const user =  User.findOne({username: username}).then((result) => {
 
 if (username == "admin") {
  if(password == "admingg"){
+  userLogIn.usernameLogIn = "admin"
   res.json({message: "logged in successfully",mylink:"/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093", success: "success"})
  }
 } else {
   if (result == null) {
     return  res.json({message: "username not find", success: "not success"})
   } 
+
   const gg = async () =>  {
    
     if (await bcrypt.compare(password, result.password)) {
       res.json({message: "logged in successfully",mylink:"/", username: result.username , success: "success"})
+
       userLogIn.usernameLogIn = result.username
       console.log(userLogIn)
+  
   } else {res.json({message: "password not true", success: "not success"})}}   
 
 
@@ -168,7 +222,9 @@ if (username == "admin") {
 
 
 
-
+app.post("/api/logout", (req, res) => {
+  userLogIn.usernameLogIn = ""
+});
 
 
 
@@ -217,11 +273,69 @@ app.delete("/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/:id", (req, 
       console.log(err);
     });
 });
+app.delete("/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/del/comment", (req, res) => {
+  comment.findByIdAndDelete(req.body.idcom).then((result) => {
+    console.log("done");
+     Rcomment.find({IdCom: req.body.idcom}).then((result) => {
+   result.forEach(item => {
+    Rcomment.findByIdAndDelete(item._id).then((result3) => {
+     
+    })
+   });
+  })
+ 
+  })
 
+  });
+  app.delete("/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/del/Rcomment", (req, res) => {
+    Rcomment.findOneAndDelete({IdCom: req.body.idRcom}).then((result) => {
+      console.log("doneR", result,req.body.idRcom);
+    })
+    });
+
+  
+app.post("/api/Rcomment", (req, res) => {
+  console.log(req.body);
+
+new Rcomment(req.body)
+    .save()
+    .then((result) => {
+    console.log("Rcomment created !!");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
+
+app.post("/api/edit/profile", async (req, res) => {
+
+
+  const password = await bcrypt.hash(req.body.editPassword, 10)
+  console.log(password)
+
+
+if(userLogIn.usernameLogIn == ""){
+
+}else{
+  User.findOneAndUpdate(
+    {
+    username: userLogIn.usernameLogIn
+  },{
+      username: req.body.editUsernameV,
+      password: password
+    })
+  .then((result) => {
+  console.log("done", result);
+}).catch((err) => {
+  console.log(err);
+})
+}
+
+})
 
 
 
 
 app.use((req, res) => {
-  res.render("404" , {mytitle: "404"})
+  res.render("404" , {mytitle: "404", username: userLogIn.usernameLogIn})
 });

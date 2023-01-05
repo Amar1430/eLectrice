@@ -5,6 +5,7 @@
   <body>
     <%- include("./partials/header.ejs") %>
 <section class="log-in">
+  <h1 style="display: none;" id="username1"><%= username %>  </h1>
     <h1>log in</h1>
 
             <h4 id="error-logIn" > </h4>
@@ -31,9 +32,9 @@
       const h4error = document.querySelector("#h4-error");
       const h4user = document.querySelector("#h4-user");
 
-      form.addEventListener("submit", login);
+      form.addEventListener("submit", loginfun);
 
-      async function login(event) {
+      async function loginfun(event) {
         event.preventDefault();
 
         const username = document.getElementById("username").value
@@ -63,7 +64,8 @@
    })
       
 }
-   
+  
+
     </script>
   </body>
 </html>

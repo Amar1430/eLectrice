@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/haed.ejs") %>
+
+    <body>
+
+        <%- include("./partials/header.ejs") %>
+        <h1 style="display: none;" id="username1"><%= username %>  </h1>
+
+            <main>
+
+
+   <h1 class="welcome" style="text-align: center;">Welcome</h1>
+   <h2 style="text-align: center;"><%= user.username %> </h2> 
+   <a id="logout" class="logout" href="/">log out</a>
+   <button id="edit" class="edit" >edit</button>
+
+       <form id="formEdit" class="formEdit">
+        <input name="comment" id="editUsername"  autocomplete="off" minlength="2" maxlength="20"   placeholder="new username" type="text">
+        <input name="comment" id="editPassword"  autocomplete="off"  minlength="6"  maxlength="20"  placeholder="new password" type="password">
+        <h5 class="eyeHide" id='eyeHide'> 
+            <i    class="fa-solid fa-eye-slash"></i>
+        </h5>
+       <h5 class="hide eyeShow "  id='eyeShow' >
+         <i  class="fa-solid fa-eye"></i>
+       </h5>
+             <button id="post">Done</button>
+ 
+     
+       </form>  
+
+
+       <section  id="editSho" class="delSec">
+        <div>
+          <h1>do you want to update you'r password/username </h1>
+          <button id="noButton" >no</button>
+          <button  id="yesButton">yes</button>
+        </div>
+      </section>
+    </main>
+            </main>
+            <script>
+
+const logout = document.querySelector("#logout")
+logout.addEventListener("click" , (e) => {
+    fetch("api/logout", {
+        method: "POST",
+    }).then(res => res.json())
+})
+
+
+const edit = document.querySelector("#edit")
+
+
+
+
+
+const post = document.querySelector("#post")
+
+
+
+const eyeHide = document.querySelector("#eyeHide")
+const eyeShow = document.querySelector("#eyeShow")
+
+const formEdit = document.querySelector("#formEdit")
+const password = document.querySelector("#editPassword")
+
+eyeHide.addEventListener("click", (e) => {
+    eyeHide.classList.toggle("hide")
+    eyeShow.classList.toggle("hide")
+    
+    const type = password.getAttribute("type")
+
+    if (type == "password") {
+        password.setAttribute("type", "text")
+    } else if ( type == "text") {
+        password.setAttribute("type", "password")
+        
+    }
+})
+
+eyeShow.addEventListener("click", (e) => {
+    eyeHide.classList.toggle("hide")
+    eyeShow.classList.toggle("hide")
+    
+    const type = password.getAttribute("type")
+
+    if (type == "password") {
+        password.setAttribute("type", "text")
+    } else if ( type == "text") {
+        password.setAttribute("type", "password")
+        
+    }
+})
+formEdit.classList.add("hide")
+
+
+
+
+edit.addEventListener("click", (e) => {
+    formEdit.classList.toggle("hide")
+})
+
+const editSho = document.querySelector("#editSho")
+const noButton = document.querySelector("#noButton")
+const yesButton = document.querySelector("#yesButton")
+post.addEventListener("click", (e) => {
+    e.preventDefault()
+    editSho.style.display = "block"
+    noButton.addEventListener("click", (e) => {
+        editSho.style.display = "none"
+    })
+    yesButton.addEventListener("click", (e) => {
+        const passwordV = document.querySelector("#editPassword").value
+const editUsernameV = document.querySelector("#editUsername").value
+
+if (passwordV == "") {
+console.log("can't");
+} else if(editUsernameV == ""){console.log("can't");}else{
+const editPassword = passwordV
+fetch("/api/edit/profile" , {
+
+method: "POST",
+headers: { "content-Type": " application/json" },
+body: JSON.stringify({
+editPassword,
+editUsernameV
+}),
+}).then((response)=> response.json() )
+
+}
+
+    })
+})
+
+            </script>
+            <%- include("./partials/footer-pro.ejs") %>
+    </body>
+
+</html>

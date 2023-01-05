@@ -4,8 +4,7 @@
   <body>
     <%- include("./partials/header.ejs") %>
 
-    <main>
-
+    <main>        <h1 style="display: none;" id="username1"><%= username %>  </h1>
       <section class="gameSec">
         <img  src="http://drive.google.com/uc?export=view&id=<%=objgame.gameImage%>" alt="">
         
@@ -24,47 +23,157 @@
    
 
       </section>
-    <form class="add-comment">
+    <form id="formCom" class="add-comment">
         <input name="comment" id="comment"  placeholder="comment" type="text">
 <div>
         <h3>select from 1 to 10</h3>  <input id="num" max="10" min="1" type="number">
 </div>
       <button>Send</button>
     </form> 
-
-
+    <h1 style="margin-left: 30px; font-size: 20px;" class="logInPla hide"> please log in to add comment from hear >>> <a href="/login">Log In</a></h1>
+     
       <section class="comment">
-<h1 style="display: none;" id="username"> <%= username %></h1>    
-<h1 id="username1"></h1>
-<% resultCom.forEach(itemCom => { %>
    
-      <div>
+<h1 style="display: none;" id="id"><%= objgame._id%></h1>    
+<div>
+<% resultCom.forEach(itemCom => { %>
+
+<div>
+  
+          <div class="cardCom">
+    
+               <h3  id="h3"> <%= itemCom.username %></h3> 
+               <h4>from 1 to 10 i give it ( <%= itemCom.num%> ) </h4>
+               <h2> <%= itemCom.comment%></h1>
+              <h2 style="width: 1px; height: 1px; overflow: hidden;" class="IdCom" ><%= itemCom._id  %>   </h1>
+  
+                <button id="AddRcom">Add Comment</button>
+  
+              <form class="AddFRcom" id="AddFRcom">
+                <input name="comment" id="Rcomment"  class="Rcomment" placeholder="comment" type="text">
+                <button>Send</button>
+              </form>
+  
+      <h1 style="margin-left: 30px; font-size: 20px;" class="logInPla2 hide"> please log in to add comment from hear >>> <a href="/login">Log In</a></h1>
+              
+          </div> 
+         
+           <% resultRCom.forEach(itemRCom => { %>
+          <div  class="cardRCom">
+            <hr class="hr">
+            <hr class="e hr"> 
+            <h3  id="h3"> <%= itemRCom.username %></h3>
+            <h2> <%= itemRCom.Rcomment%></h1>
+              <h2 style="width: 1px; height: 1px; overflow: hidden;" id="IdRCom"><%= itemRCom.IdCom%></h1>
+    
+           
+          </div>
+
+        <% }); %>
+       </div>
+        <% }); %> 
+</div>
 
 
-           <h3> <%= itemCom.username %></h3>
-           <h4>from 1 to 10 i give it ( <%= itemCom.num%>) </h4>
-           <h2> <%= itemCom.comment%></h1>
 
-      </div>
-<% }); %> 
- 
+
+
+
+
       </section>
-
-
 
     </main>
 <script defer>
   
-  const form = document.querySelector("form");
 
-const username = document.getElementById("username").innerText
-      
+  const username = document.getElementById("username1").innerText
+  
+  const logInPla = document.querySelector(".logInPla")
+  const logInPla2 = document.querySelector(".logInPla2")
 
-      form.addEventListener("submit", registerUser);
+ const form = document.getElementById("formCom");
+if (username == "  ") {
+  form.classList.add("hide")
+  logInPla.classList.remove("hide")
+}
+ 
+ 
+  const AddRcom = document.querySelectorAll("#AddRcom");
 
+  const AddFRcom = document.querySelectorAll("#AddFRcom");
+
+  
+
+
+
+
+  const id = document.getElementById("id").innerText
+
+  AddFRcom.forEach(element => { 
+     element.classList.add("hide")
+    element.addEventListener("submit", (e) => {
+  
+  const eo = e.path[0]
+  const Rcomment = eo.getElementsByClassName("Rcomment")[0].value
+  const IdCom = eo.parentElement.getElementsByClassName("IdCom")[0].innerText
+    fetch("/api/Rcomment", {
+       
+       method: "POST",
+       headers: { "content-Type": " application/json" },
+       body: JSON.stringify({
+        username,
+      Rcomment, 
+      IdCom,
+      id
+       }),
+     }).then((response)=> response.json())
+  })
+
+  });
+ 
+
+
+  AddRcom.forEach(item => {
+  item.addEventListener("click", (e) => {
+const eo = e.path[0]
+const element = eo.parentElement.getElementsByClassName("AddFRcom")[0]
+element.classList.toggle("hide")
+})
+});
+ 
+  const IdRCom = document.querySelectorAll("#IdRCom");
+ 
+
+
+
+
+
+
+
+  IdRCom.forEach(item => {
+  
+const IdCom = item.parentElement.parentElement.getElementsByClassName("IdCom")[0].innerText
+const IdRPCom = item.parentElement
+
+
+if (item.innerText !== IdCom) {
+  IdRPCom.classList.add("hide")
+
+}
+
+  });
+
+
+  
+
+
+
+
+
+     form.addEventListener("submit", registerUser);
       async function registerUser(event) {
-        event.preventDefault();
-const username = document.getElementById("username").innerText
+   
+
         const num = document.getElementById("num").value
 const comment = document.getElementById("comment").value
         const result = await fetch("/api/comment", {
@@ -74,9 +183,19 @@ const comment = document.getElementById("comment").value
           body: JSON.stringify({
             comment,
             num, 
-            username
+            username,
+            id
           }),
         }).then((response)=> response.json())}
+
+
+
+
+
+
+
+
+
 </script>
     <%- include("./partials/footer.ejs") %>
   </body>

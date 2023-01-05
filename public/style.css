@@ -3,7 +3,7 @@
   padding: 0;
   transition: all 500ms ease;
 }
-html{
+html {
   width: 100%;
   height: 100%;
 }
@@ -39,8 +39,7 @@ header div img {
   margin-bottom: 5px;
 }
 
-
-.footer-pro{
+.footer-pro {
   position: absolute;
   bottom: 0;
 }
@@ -104,7 +103,6 @@ footer > div > a {
   margin-bottom: 20px;
 }
 .form {
-
   width: 400px;
   text-align: center;
   border-radius: 10px;
@@ -116,12 +114,12 @@ footer > div > a {
 .log-in {
   border: rgb(85, 85, 255) 3px solid;
   margin-top: 170px;
-  width: 400px; 
-   margin-left: auto;
+  width: 400px;
+  margin-left: auto;
   margin-right: auto;
   border-top-left-radius: 14px;
-  border-top-right-radius:14px ;
-  margin-bottom:100px;
+  border-top-right-radius: 14px;
+  margin-bottom: 100px;
 }
 .log-in h1 {
   margin-left: auto;
@@ -131,8 +129,9 @@ footer > div > a {
   text-align: center;
   margin-bottom: 20px;
   border-top-left-radius: 10px;
-  border-top-right-radius:10px ;
-}.form > div {
+  border-top-right-radius: 10px;
+}
+.form > div {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -144,24 +143,24 @@ footer > div > a {
   border: solid 1px;
   padding: 10px;
   width: 70%;
-  text-align: center  ;
-color: black;
+  text-align: center;
+  color: black;
 }
-.form > div > label{
+.form > div > label {
   margin-right: 30px;
   padding-bottom: 20px;
 }
-.form > input{
-    font-size: large;
-    margin-bottom: 20px;
-    background-color: white;
-    border: solid 1px;
-    padding: 10px;
-    width: 50%;
-    color: black;
+.form > input {
+  font-size: large;
+  margin-bottom: 20px;
+  background-color: white;
+  border: solid 1px;
+  padding: 10px;
+  width: 50%;
+  color: black;
 }
 
-.form a{
+.form a {
   position: relative;
   left: 160px;
   top: 50px;
@@ -171,58 +170,57 @@ color: black;
   width: 60px;
   border-radius: 10px;
 }
-.log-in  h4 {
-margin-right:180px;
-color: red;
-width: 200px;
-margin-bottom: 10px;
-
+.log-in h4 {
+  margin-right: 180px;
+  color: red;
+  width: 200px;
+  margin-bottom: 10px;
 }
-main{
+main {
   margin-top: 100px;
 }
 
-
-main .store{
-display: flex;
-width: 100%;
-margin-bottom: 100px;
-flex-wrap:wrap ;
-flex-direction: row;
+main .store {
+  display: flex;
+  width: 100%;
+  margin-bottom: 100px;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
-main .store .card{
-border: solid 2px;
-width: 200px;
-height: 300px;
-border-radius: 16px;
-overflow: hidden;
-margin-left: 60px;
-transform: translateX(-10px);
-margin-bottom: 50px;
-}
-
-main .store .card img{
-width: 200px;
-height: 200px;
-border-radius: 7px;
-margin-left: auto;
-margin-right: auto;
+main .store .card {
+  border: solid 2px;
+  width: 200px;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-left: 60px;
+  transform: translateX(-10px);
+  margin-bottom: 50px;
 }
 
-main .store .card h1{
+main .store .card img {
+  width: 200px;
+  height: 200px;
+  border-radius: 7px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main .store .card h1 {
   margin-left: 10px;
-}main .store .card h2{
+}
+main .store .card h2 {
   margin-left: 20px;
   font-size: 20px;
   font-weight: 550;
 }
-main .store .card a{
-margin-left: 20px;
-text-decoration: none;
-color: blue;
-font-size: 25px;
-display: block;
-margin-top: 10px;
+main .store .card a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: blue;
+  font-size: 25px;
+  display: block;
+  margin-top: 10px;
 }
 
 .addForm {
@@ -231,68 +229,81 @@ margin-top: 10px;
   width: 600px;
   margin-bottom: 200px;
 }
-.addForm > input{
+
+.addForm > input {
   margin: 20px 40px;
 }
-.addForm > label{
+.addForm > label {
   margin-left: 40px;
-}form > button{
+}
+.form > button , .add-comment > button, .AddFRcom button  {
   background-color: white;
   height: 30px;
   width: 80px;
-  border: solid 1px ;
+  border: solid 1px;
   border-radius: 10px;
   margin-left: 40px;
 }
-.addForm > button:hover{
+.formEdit > button{
+  background-color: white;
+  height: 30px;
+  width: 80px;
+  border: solid 1px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+.eyeShow,.eyeHide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: solid 1px;
+ 
+  height: 30px;
+width: 30px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.addForm > button:hover {
   background-color: #8c8c8c;
   color: white;
 }
 
-.gameSec{
+.gameSec {
   width: 100%;
   text-align: center;
 
   height: 30%;
-display: flex;
-flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
-.gameSec> img{
+.gameSec > img {
   width: 350px;
   height: 350px;
   margin-right: 20px;
   border-radius: 10px;
   margin-bottom: 100px;
 }
-.gameSec div  h1{
-
+.gameSec div h1 {
   width: fit-content;
   transform: translateX(130px);
- 
-
 }
-.gameSec div  h4{
-
+.gameSec div h4 {
   width: fit-content;
-  transform: translate(120px,5px);
- 
-
+  transform: translate(120px, 5px);
 }
 
-.gameSec   h2{
-
+.gameSec h2 {
   width: fit-content;
 
-  transform: translate(-50px,10px);
-
- 
-
+  transform: translate(-50px, 10px);
 }
-.gameSec a{
-  margin-top: 200px;  
+.gameSec a {
+  margin-top: 200px;
   display: block;
-  color: white ;
+  color: white;
   background-color: blue;
   text-decoration: none;
   height: 30px;
@@ -302,10 +313,9 @@ flex-direction: row-reverse;
   padding-top: 10px;
   transform: translateX(100px);
 }
-.gameSec button{
-
+.del {
   display: block;
-  color: white ;
+  color: white;
   background-color: red;
   text-decoration: none;
   height: 40px;
@@ -313,28 +323,93 @@ flex-direction: row-reverse;
   border-radius: 10px;
   text-align: center;
 
-  position: fixed;
+  position: absolute;
   bottom: 150px;
   left: 20px;
   border: none;
 }
+.comment div #del {
+  color: white;
+  background-color: red;
+  text-decoration: none;
+  height: 20px;
+  width: 60px;
+  border-radius: 10px;
+  text-align: center;
+  border: none;
+  position: relative;
+  top: -70px;
+  left: 540px;
+}
+.Rdel {
+  color: white;
+  background-color: red;
+  text-decoration: none;
+  height: 20px;
+  width: 60px;
+  border-radius: 10px;
+  text-align: center;
+  border: none;
+  position: relative;
+  bottom: -10px;
+  left: 540px;
+}
+.comment hr {
+  width: 2px;
+  background-color: black;
+  height: 50px;
+  margin-left: 70px;
+  border: none;
+  display: flex;
+  position: absolute;
+  left: -100px;
+  top: -18px;
+}
+.comment .e {
+  width: 30px;
+  background-color: black;
+  height: 2px;
+  margin-left: 70px;
+  position: absolute;
+  top: 30px;
+  left: -100px;
+  display: flex;
 
-.hide{
-  display: none;
 }
-#search{
+.cardRCom {
+display: block;
+  border: black solid 1px;
+  border-radius: 10px;
+  width: 600px;
+  background-color: #f1f1f1;
+  color: black;
+  padding: 5px 10px;
+  margin-left: 100px;
+  margin-top: 0;
+  position: relative;
+  top: 17px;
+  left: -10px;
+  margin-bottom: 20px;
+}
+.hide {
+  display: none !important;
+}
+.show {
   display: block;
-width: 300px;
-height: 20px;
-  border: solid 1px;
-  border-radius:10px;
- margin-left: auto;
- margin-right: auto;
- margin-bottom: 50px;
- padding: 5px;
- font-size: 15px;
 }
-p{
+#search {
+  display: block;
+  width: 300px;
+  height: 20px;
+  border: solid 1px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  padding: 5px;
+  font-size: 15px;
+}
+p {
   text-align: center;
   width: 400px;
   margin-bottom: 154px;
@@ -342,70 +417,165 @@ p{
   margin-left: auto;
   margin-right: auto;
 }
-.comment{
+.comment {
   display: flex;
-  flex-direction:column ;
+  flex-direction: column;
   margin-bottom: 100px;
 }
-.add-comment{
+.add-comment {
   display: flex;
-  flex-direction:row ;
+  flex-direction: row;
   margin-left: 30px;
 }
-.comment> div{
-margin-left: 50px;
-border: black solid 1px;
-border-radius: 10px;
-width: 600px;
-background-color: #f1f1f1;
-color: black;
-padding: 5px  10px;
-margin-top: 30px;
+.comment  .cardCom {
+  margin-left: 50px;
+  border: black solid 1px;
+  border-radius: 10px;
+  width: 600px;
+  background-color: #f1f1f1;
+  color: black;
+  padding: 5px 10px;
+  margin-top: 30px;
+  position: relative;
 }
-.comment> div> h3{
+.comment .cardCom > h3,
+.cardRCom h3 {
   padding-bottom: 10px;
   color: #505050;
-
 }
-.add-comment>div{
-border: solid 1px;
-border-radius: 10px;
-display: flex;
-flex-direction: row;
-align-items: center;
-margin-left: 30px;
-width: 280px;
-height: 30px;}
-
-.add-comment>div> h3{
-
-margin-left: 30px;
+.add-comment > div {
+  border: solid 1px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 30px;
+  width: 280px;
+  height: 30px;
 }
-.add-comment>div> input{
+
+.add-comment > div > h3 {
+  margin-left: 30px;
+}
+.add-comment > div > input {
   display: block;
   margin-right: 30px;
   margin-left: 30px;
-width: 40px;
-  }
-  .add-comment>div:hover{
-    padding: 10px 30px;
-        background-color: #f1f1f1;
-       
-      
-      }
-      .add-comment>input  {
-        border-radius: 10px;
-         padding-left: 10px;
-      }
-      .add-comment>input:hover{    
-            background-color: #f1f1f1;
-            border-radius: 20px;
-       padding-right: 100px;
-      
-           
-          }
-          .add-comment>button:hover{
-            width: 100px;
-            height: 50px;
-                background-color: #f1f1f1;
-              }
+  width: 40px;
+}
+.add-comment > div:hover {
+  padding: 10px 30px;
+  background-color: #f1f1f1;
+}
+.add-comment > input, .formEdit input {
+  border-radius: 10px;
+  padding-left: 10px;
+}
+.add-comment > input:hover, #Rcomment:hover,  .formEdit > input:hover {
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  padding-right: 100px;
+}
+#Rcomment{
+  margin-top: 20px;
+  border-radius: 10px;
+  padding-left: 10px;
+  height: 30px;
+}
+.delSec {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding-top: 200px;
+  background-color: rgb(133, 133, 133, 0.3);
+
+  text-align: center;
+  display: none;
+}
+
+.delSec > div {
+  background-color: #f1f1f1;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.delSec > div > h1 {
+  font-size: 25px;
+  padding-top: 20px;
+}
+
+.delSec > div > button {
+  font-size: 30px;
+  width: 60px;
+  height: 40px;
+  margin-top: 40px;
+  border: none;
+  border-radius: 10px;
+}
+
+.delSec div button:nth-child(3) {
+  margin-left: 100px;
+  background-color: red;
+  color: wheat;
+}
+
+.logout{
+  text-align: center;
+  
+  font-weight: 600;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 30px;
+  width: 150px;
+  border-radius: 10px;
+  height: 40px;
+position: fixed;
+left: 30px;
+bottom: 170px;
+}
+.edit{
+  border: none;
+  font-weight: 100;
+  text-align: center;
+  background-color: gray;
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 30px;
+  width: 150px;
+  border-radius: 10px;
+  height: 40px;
+position: fixed;
+right: 30px;
+bottom: 170px;
+}
+
+#formEdit{
+  position: fixed;
+  right: 200px;
+bottom: 180px;
+display: flex;
+
+}
+
+#AddRcom{
+position: absolute;
+right: 20px;
+bottom: 10px;
+height: 40px;
+width: 70px;
+background-color: white;
+border-radius: 10px;
+border: solid black 0.2px;
+}
+
+.welcome{
+  color: rgb(106, 106, 106)
+}

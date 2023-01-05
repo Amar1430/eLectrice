@@ -5,7 +5,7 @@
     <body>
 
         <%- include("./partials/header.ejs") %>
-
+        <h1 style="display: none;" id="username1"><%= username %>  </h1>
 
             <main class="mianPage">
 
@@ -59,7 +59,10 @@ store.innerHTML += `       <div id="card" class="card">
 return;
     })
 }
-   
+
+
+
+
             </script>
             <%- include("./partials/footer.ejs") %>
     </body>

@@ -1,11 +1,13 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <%- include("./partials/haed.ejs") %>
   <body>
-    <%- include("./partials/hederAdmin.ejs") %>
+    <%- include("./partials/header.ejs") %>
 
-    <main>
-
+    <main>        <h1 style="display: none;" id="username1"><%= username %>  </h1>
       <section class="gameSec">
         <img  src="http://drive.google.com/uc?export=view&id=<%=objgame.gameImage%>" alt="">
         
@@ -18,34 +20,313 @@
            </div>
             <h2><%= objgame.body %> </h2>
           </div>
-       <div>
-           <a target="_blank" href="<%= objgame.gamefile %> ">Download</a>
-           <button class="del" data-linkid="<%= objgame._id %>" target="_blank" href="<%= objgame.gamefile %> ">delete</button>
-       </div>
+          <a target="_blank" href=" <%= objgame.gamefile %> ">Download</a>
+          <button class="del" data-linkid="<%= objgame._id %>" target="_blank"  >delete <br> this game</button>
+        
      </div>
+   
+
       </section>
-      
+    <form id="formCom" class="add-comment">
+        <input name="comment" id="comment"  placeholder="comment" type="text">
+<div>
+        <h3>select from 1 to 10</h3>  <input id="num" max="10" min="1" type="number">
+</div>
+      <button>Send</button>
+    </form> 
+    <h1 style="margin-left: 30px; font-size: 20px;" class="logInPla hide"> please log in to add comment from hear >>> <a href="/login">Log In</a></h1>
+     
+      <section class="comment">
+   
+<h1 style="display: none;" id="id"><%= objgame._id%></h1>    
+<div>
+<% resultCom.forEach(itemCom => { %>
+
+<div>
+  
+          <div class="cardCom">
+    
+               <h3  id="h3"> <%= itemCom.username %></h3> 
+               <h4>from 1 to 10 i give it ( <%= itemCom.num%> ) </h4>
+               <h2> <%= itemCom.comment%></h1>
+              <h2 style="width: 1px; height: 1px; overflow: hidden;" class="IdCom" ><%= itemCom._id  %>   </h1>
+                <button id="del">del</button>
+                <button id="AddRcom">Add Comment</button>
+  
+              <form class="AddFRcom" id="AddFRcom">
+                <input name="comment" id="Rcomment"  class="Rcomment" placeholder="comment" type="text">
+                <button>Send</button>
+              </form>
+  
+      <h1 style="margin-left: 30px; font-size: 20px;" class="logInPla2 hide"> please log in to add comment from hear >>> <a href="/login">Log In</a></h1>
+              
+          </div> 
+         
+           <% resultRCom.forEach(itemRCom => { %>
+          <div  class="cardRCom">
+            <hr class="hr">
+            <hr class="e hr"> 
+                <button class="Rdel" id="Rdel">del</button>
+                <h3  id="h3"> <%= itemRCom.username %></h3>
+            <h2> <%= itemRCom.Rcomment%></h1>
+              <h2 style="width: 1px; height: 1px; overflow: hidden;" class="idRcom" id="IdRCom"><%= itemRCom.IdCom%></h1>
+    
+           
+          </div>
+
+        <% }); %>
+       </div>
+        <% }); %> 
+</div>
+
+
+
+
+
+
+
+      </section>
+      <section id="delAdminGame" class="delSec">
+        <div>
+          <h1>do you want to delete this game </h1>
+          <button id="nobutton" >no</button>
+          <button  id="delbutton">yes</button>
+        </div>
+      </section>
+      <section id="delAdmincommant" class="delSec">
+        <div>
+          <h1>do you want to delete this commant </h1>
+          <button id="nobuttoncom" >no</button>
+          <button  id="delcombutton">yes</button>
+        </div>
+      </section>
     </main>
-<script>
-      const btnelement = document.querySelector(".del")
+<script defer>
+  
+
+  const username = document.getElementById("username1").innerText
+  const btnelement = document.querySelector(".del")
+      const nobuttoncom = document.querySelector("#nobuttoncom")
+      const nobutton = document.querySelector("#nobutton")
+      const delbutton = document.querySelector("#delbutton")
+      const delcombutton = document.querySelector("#delcombutton")
+      const delAdminGame = document.querySelector("#delAdminGame")
+      const delAdmincommant = document.querySelector("#delAdmincommant")
   const GameId = btnelement.getAttribute("data-linkid");
+  const logInPla = document.querySelector(".logInPla")
+  const logInPla2 = document.querySelector(".logInPla2")
+
+  const del = document.querySelectorAll("#del")
+  const Rdel = document.querySelectorAll("#Rdel")
+ const form = document.getElementById("formCom");
+if (username == "  ") {
+  form.classList.add("hide")
+  logInPla.classList.remove("hide")
+}
+ 
+ 
+  const AddRcom = document.querySelectorAll("#AddRcom");
+
+  const AddFRcom = document.querySelectorAll("#AddFRcom");
+
+  
 
 
-  // what is data ?
-  // mylink:"/" in app.js:98
 
 
-  btnelement.addEventListener("click", (eo)=> {
+  const id = document.getElementById("id").innerText
 
+  AddFRcom.forEach(element => { 
+     element.classList.add("hide")
+    element.addEventListener("submit", (e) => {
+  
+  const eo = e.path[0]
+  const Rcomment = eo.getElementsByClassName("Rcomment")[0].value
+  const IdCom = eo.parentElement.getElementsByClassName("IdCom")[0].innerText
+    fetch("/api/Rcomment", {
+       
+       method: "POST",
+       headers: { "content-Type": " application/json" },
+       body: JSON.stringify({
+        username,
+      Rcomment, 
+      IdCom,
+      id
+       }),
+     }).then((response)=> response.json())
+  })
+
+  });
+ 
+
+
+  AddRcom.forEach(item => {
+  item.addEventListener("click", (e) => {
+const eo = e.path[0]
+const element = eo.parentElement.getElementsByClassName("AddFRcom")[0]
+element.classList.toggle("hide")
+})
+});
+ 
+  const IdRCom = document.querySelectorAll("#IdRCom");
+ 
+
+
+
+
+
+
+
+  IdRCom.forEach(item => {
+  
+const IdCom = item.parentElement.parentElement.getElementsByClassName("IdCom")[0].innerText
+const IdRPCom = item.parentElement
+
+
+if (item.innerText !== IdCom) {
+  IdRPCom.classList.add("hide")
+
+}
+
+  });
+
+
+  
+
+
+
+
+
+     form.addEventListener("submit", registerUser);
+      async function registerUser(event) {
+   
+
+        const num = document.getElementById("num").value
+const comment = document.getElementById("comment").value
+        const result = await fetch("/api/comment", {
+       
+          method: "POST",
+          headers: { "content-Type": " application/json" },
+          body: JSON.stringify({
+            comment,
+            num, 
+            username,
+            id
+          }),
+        }).then((response)=> response.json())}
+
+
+
+
+
+
+        btnelement.addEventListener("click", (eo)=> {
+    delAdminGame.style.display = "block"
+} )
+nobutton.addEventListener("click", (eo)=> {
+    delAdminGame.style.display = "none"
+} )
+
+delbutton.addEventListener("click" ,(eo) => {
   fetch(`/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/${GameId}`, { method: "DELETE" } )
-  .then((response)=> response.json())
-  .then((data) => window.location.href =  data.mylink)
-  .catch((err)=> {
-  console.log(err);
-  } );
+.then((response)=> response.json())
+.then((data) => window.location.href =  data.mylink)
+.catch((err)=> {
+console.log(err);
+} );
 
+
+})
+
+
+
+del.forEach(item => {
+
+item.addEventListener("click", (e) => {
+
+  delAdmincommant.style.display = "block"
+
+  nobuttoncom.addEventListener("click", (eo)=> {
+  delAdmincommant.style.display = "none"
+} )
+
+delcombutton.addEventListener("click" ,(eo) => {
+
+  const idcom = item.parentElement.getElementsByClassName("IdCom")[0].innerText
+
+    fetch(`/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/del/comment`, { method: "DELETE",
+    headers: { "content-Type": " application/json" },
+        body: JSON.stringify({
+           idcom
+        
+        }),
+  
   } )
+.then((response)=> response.json())
+window.location.reload()
+})
+})
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+Rdel.forEach(item => {
+
+item.addEventListener("click", (e) => {
+
+  delAdmincommant.style.display = "block"
+
+  nobuttoncom.addEventListener("click", (eo)=> {
+  delAdmincommant.style.display = "none"
+} )
+
+delcombutton.addEventListener("click" ,(eo) => {
+
+  const idRcom = item.parentElement.getElementsByClassName("idRcom")[0].innerText
+
+    fetch(`/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/del/Rcomment`, { method: "DELETE",
+    headers: { "content-Type": " application/json" },
+        body: JSON.stringify({
+           idRcom
+        
+        }),
+  
+  } )
+.then((response)=> response.json())
+window.location.reload()
+})
+})
+
+
+});
+
+
+
+
+
+
 </script>
-    <%- include("./partials/footer-pro.ejs") %>
+    <%- include("./partials/footer.ejs") %>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+

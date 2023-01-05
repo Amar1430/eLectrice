@@ -2,17 +2,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
  
 // define the Schema (the structure of the article)
-const commentSchema = new Schema({
-num: Number,
-comment: String,
+const RcommentSchema = new Schema({
 username: String,
-id: String,
+Rcomment: String,
+IdCom: String,
+id: String
 });
  
  
 // Create a model based on that schema
-const comment = mongoose.model("comment", commentSchema);
+const Rcomment = mongoose.model("Rcomment", RcommentSchema);
  
  
 // export the model
-module.exports = comment; 
+module.exports = Rcomment; 
