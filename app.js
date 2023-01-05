@@ -32,7 +32,7 @@ mongoose
     "mongodb://amar:amarxx@cluster0-shard-00-00.y55up.mongodb.net:27017,cluster0-shard-00-01.y55up.mongodb.net:27017,cluster0-shard-00-02.y55up.mongodb.net:27017/all-date?ssl=true&replicaSet=atlas-zssrz9-shard-0&authSource=admin&retryWrites=true&w=majority"
   )
   .then((result) => {
-    app.listen(port, () => {
+    app.listen(port, process.env.port || 3000 , () => {
       console.log(`Example app listening at http://localhost:${port}`);
     });
   })
