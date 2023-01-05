@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/haed.ejs") %>
+<body>
+    <%- include("./partials/hederAdmin.ejs") %>
+
+
+   <main>
+    <input placeholder="Search" type="text" onkeyup="sandData(this)" id="search">
+         
+    <section class="store">
+        <% result.forEach(item => { %> 
+     <div id="card" class="card">
+         <img  src="http://drive.google.com/uc?export=view&id=<%=item.gameImage%>" alt="">
+         <h1> <%= item.name %> </h1>
+         <h2 ><%= item.category %>  </h2>
+         <a href="/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/<%= item._id %>">More</a>
+    
+     </div>  
+     
+       <% });%>
+    </section>
+   </main>
+
+    <%- include("./partials/footer.ejs") %>
+    <script>
+        function sandData(e){
+        const store = document.querySelector(".store")
+        
+            fetch("api/search", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({payload: e.value})
+            }).then(res => res.json()).then(date => {
+                let payload = date.payload
+        store.innerHTML = ""
+        if(payload.length < 1){
+            store.innerHTML = "<p>sory. nothing found. </p>"
+            return;
+        }
+        payload.forEach((item , index) => {
+            if (index > 0 )  store.innerHTML += "<hr>";
+        store.innerHTML += `       <div id="card" class="card">
+                         <img  src="http://drive.google.com/uc?export=view&id=${item.gameImage}" alt="">
+                         <h1> ${item.name} </h1>
+                         <h2 >${item.category} </h2>
+                         <a href="/Electric/${item._id} ">More</a>
+                    
+                     </div>  `
+            
+        });
+        return;
+            })
+        }
+           
+        </script>
+</body>
+</html>

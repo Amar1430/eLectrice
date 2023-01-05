@@ -1,0 +1,411 @@
+* {
+  margin: 0;
+  padding: 0;
+  transition: all 500ms ease;
+}
+html{
+  width: 100%;
+  height: 100%;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  padding-bottom: 10px;
+  background-color: #f1f1f1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 100000;
+}
+header div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+header div h1 {
+  margin: 17px;
+  font-size: 25px;
+}
+header div img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+.footer-pro{
+  position: absolute;
+  bottom: 0;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  background-color: #333333;
+  color: white;
+  padding-top: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateZ(100px);
+}
+footer > p {
+  font-weight: 800;
+  font-size: 25px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+footer > p:hover {
+  color: #c6c6c6;
+}
+footer > div {
+  margin-right: 40px;
+}
+footer > div > h1 {
+  font-size: 25px;
+  font-weight: 400;
+  color: #a6a6a6;
+}
+footer > div > div > a {
+  font-size: 20px;
+  font-weight: 600;
+  color: #8c8c8c;
+  display: block;
+  text-decoration: none;
+}
+footer > div > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+footer > div > div > a:hover,
+footer > div > a:hover {
+  color: #a6a6a6;
+  border-bottom: #a6a6a6 solid 0.5px;
+}
+footer > div > a {
+  font-size: 20px;
+  font-weight: 400;
+  color: #8c8c8c;
+  border: none;
+  width: fit-content;
+  display: block;
+  background-color: #333333;
+  margin-bottom: 20px;
+}
+.form {
+
+  width: 400px;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.log-in {
+  border: rgb(85, 85, 255) 3px solid;
+  margin-top: 170px;
+  width: 400px; 
+   margin-left: auto;
+  margin-right: auto;
+  border-top-left-radius: 14px;
+  border-top-right-radius:14px ;
+  margin-bottom:100px;
+}
+.log-in h1 {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(85, 85, 255);
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius:10px ;
+}.form > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.form > div > input {
+  margin-bottom: 20px;
+  background-color: white;
+  border: solid 1px;
+  padding: 10px;
+  width: 70%;
+  text-align: center  ;
+color: black;
+}
+.form > div > label{
+  margin-right: 30px;
+  padding-bottom: 20px;
+}
+.form > input{
+    font-size: large;
+    margin-bottom: 20px;
+    background-color: white;
+    border: solid 1px;
+    padding: 10px;
+    width: 50%;
+    color: black;
+}
+
+.form a{
+  position: relative;
+  left: 160px;
+  top: 50px;
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  width: 60px;
+  border-radius: 10px;
+}
+.log-in  h4 {
+margin-right:180px;
+color: red;
+width: 200px;
+margin-bottom: 10px;
+
+}
+main{
+  margin-top: 100px;
+}
+
+
+main .store{
+display: flex;
+width: 100%;
+margin-bottom: 100px;
+flex-wrap:wrap ;
+flex-direction: row;
+}
+main .store .card{
+border: solid 2px;
+width: 200px;
+height: 300px;
+border-radius: 16px;
+overflow: hidden;
+margin-left: 60px;
+transform: translateX(-10px);
+margin-bottom: 50px;
+}
+
+main .store .card img{
+width: 200px;
+height: 200px;
+border-radius: 7px;
+margin-left: auto;
+margin-right: auto;
+}
+
+main .store .card h1{
+  margin-left: 10px;
+}main .store .card h2{
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: 550;
+}
+main .store .card a{
+margin-left: 20px;
+text-decoration: none;
+color: blue;
+font-size: 25px;
+display: block;
+margin-top: 10px;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin-bottom: 200px;
+}
+.addForm > input{
+  margin: 20px 40px;
+}
+.addForm > label{
+  margin-left: 40px;
+}form > button{
+  background-color: white;
+  height: 30px;
+  width: 80px;
+  border: solid 1px ;
+  border-radius: 10px;
+  margin-left: 40px;
+}
+.addForm > button:hover{
+  background-color: #8c8c8c;
+  color: white;
+}
+
+.gameSec{
+  width: 100%;
+  text-align: center;
+
+  height: 30%;
+display: flex;
+flex-direction: row-reverse;
+}
+
+.gameSec> img{
+  width: 350px;
+  height: 350px;
+  margin-right: 20px;
+  border-radius: 10px;
+  margin-bottom: 100px;
+}
+.gameSec div  h1{
+
+  width: fit-content;
+  transform: translateX(130px);
+ 
+
+}
+.gameSec div  h4{
+
+  width: fit-content;
+  transform: translate(120px,5px);
+ 
+
+}
+
+.gameSec   h2{
+
+  width: fit-content;
+
+  transform: translate(-50px,10px);
+
+ 
+
+}
+.gameSec a{
+  margin-top: 200px;  
+  display: block;
+  color: white ;
+  background-color: blue;
+  text-decoration: none;
+  height: 30px;
+  width: 100px;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 10px;
+  transform: translateX(100px);
+}
+.gameSec button{
+
+  display: block;
+  color: white ;
+  background-color: red;
+  text-decoration: none;
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  text-align: center;
+
+  position: fixed;
+  bottom: 150px;
+  left: 20px;
+  border: none;
+}
+
+.hide{
+  display: none;
+}
+#search{
+  display: block;
+width: 300px;
+height: 20px;
+  border: solid 1px;
+  border-radius:10px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 50px;
+ padding: 5px;
+ font-size: 15px;
+}
+p{
+  text-align: center;
+  width: 400px;
+  margin-bottom: 154px;
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.comment{
+  display: flex;
+  flex-direction:column ;
+  margin-bottom: 100px;
+}
+.add-comment{
+  display: flex;
+  flex-direction:row ;
+  margin-left: 30px;
+}
+.comment> div{
+margin-left: 50px;
+border: black solid 1px;
+border-radius: 10px;
+width: 600px;
+background-color: #f1f1f1;
+color: black;
+padding: 5px  10px;
+margin-top: 30px;
+}
+.comment> div> h3{
+  padding-bottom: 10px;
+  color: #505050;
+
+}
+.add-comment>div{
+border: solid 1px;
+border-radius: 10px;
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-left: 30px;
+width: 280px;
+height: 30px;}
+
+.add-comment>div> h3{
+
+margin-left: 30px;
+}
+.add-comment>div> input{
+  display: block;
+  margin-right: 30px;
+  margin-left: 30px;
+width: 40px;
+  }
+  .add-comment>div:hover{
+    padding: 10px 30px;
+        background-color: #f1f1f1;
+       
+      
+      }
+      .add-comment>input  {
+        border-radius: 10px;
+         padding-left: 10px;
+      }
+      .add-comment>input:hover{    
+            background-color: #f1f1f1;
+            border-radius: 20px;
+       padding-right: 100px;
+      
+           
+          }
+          .add-comment>button:hover{
+            width: 100px;
+            height: 50px;
+                background-color: #f1f1f1;
+              }

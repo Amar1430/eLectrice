@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/haed.ejs") %>
+  <body>
+    <%- include("./partials/hederAdmin.ejs") %>
+
+    <main>
+
+      <section class="gameSec">
+        <img  src="http://drive.google.com/uc?export=view&id=<%=objgame.gameImage%>" alt="">
+        
+
+     <div >
+         <div>
+           <div>
+             <h1> <%= objgame.name %>  </h1>
+             <h4>  <%= objgame.category %></h4>
+           </div>
+            <h2><%= objgame.body %> </h2>
+          </div>
+       <div>
+           <a target="_blank" href="<%= objgame.gamefile %> ">Download</a>
+           <button class="del" data-linkid="<%= objgame._id %>" target="_blank" href="<%= objgame.gamefile %> ">delete</button>
+       </div>
+     </div>
+      </section>
+      
+    </main>
+<script>
+      const btnelement = document.querySelector(".del")
+  const GameId = btnelement.getAttribute("data-linkid");
+
+
+  // what is data ?
+  // mylink:"/" in app.js:98
+
+
+  btnelement.addEventListener("click", (eo)=> {
+
+  fetch(`/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/${GameId}`, { method: "DELETE" } )
+  .then((response)=> response.json())
+  .then((data) => window.location.href =  data.mylink)
+  .catch((err)=> {
+  console.log(err);
+  } );
+
+  } )
+</script>
+    <%- include("./partials/footer-pro.ejs") %>
+  </body>
+</html>

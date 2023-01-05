@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <%- include("./partials/haed.ejs") %>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <section class="log-in">
+      <h1>register</h1>
+
+   
+      <form id="form" class="form">
+    <h4 id="h4-error">   </h4>
+        <div>
+          <label for="username">username</label>
+          <input id="username" autocomplete="off" name="username" type="text" />
+        </div>
+        <div>
+          <label for="password">password</label> <input id="password"
+          minlength="6" maxlength="20"   type="password" autocomplete="off" name="password" >
+        </div>
+        <a href="/login">log in</a>
+        <input  type="submit" value="Submit" id="submit" />
+      </form>
+    </section>
+    <%- include("./partials/footer.ejs") %>
+    <script>
+      const form = document.querySelector("#form");
+      const h4Error = document.querySelector("#h4-error");
+  
+      form.addEventListener("submit", registerUser);
+
+      async function registerUser(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value
+        const password = document.getElementById("password").value
+        
+        
+        const result = await fetch("/api/register", {
+       
+          method: "POST",
+          headers: { "content-Type": " application/json" },
+          body: JSON.stringify({
+            username,
+            password
+          }),
+        }).then((response)=> response.json())
+  .then((data) => {
+    
+    
+    alert(data.message)
+  window.location.href =  data.mylink
+   
+   }
+  
+   )
+        
+   
+      }
+      h4Error.innerHTML = " "
+   
+    </script>
+  </body>
+</html>

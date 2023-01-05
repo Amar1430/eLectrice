@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/haed.ejs") %>
+<body>
+    
+    <%- include("./partials/header.ejs") %>
+
+
+    <main>
+     
+        <form class="addForm" action="" method="POST">
+<label for="name">game name</label>
+<input name="name" id="name" type="text">
+<label for="category">game category</label>
+<input  name="category" id="category" type="text">
+<label  for="body">game body</label>
+<input name="body"  id="body" type="text">
+<label for="gamefile">game image ((Google Drive img id ((<a href="/kghakgdhghagjokghdkgaolhghdjlkhjurygwuw45897y5467ty093/addImage" target="_blank "  >how to do it</a>)).   ))</label>
+<input name="gameImage" id="gameImage" value="" type="text">
+<label for="gamefile">game file ((url))</label>
+<input name="gamefile" id="gamefile" value="" type="url">
+<button><i class="fa-solid fa-upload"></i> publish</button>
+        </form>
+        
+    </main>
+    
+    <%- include("./partials/footer.ejs") %>
+</body>
+</html>
